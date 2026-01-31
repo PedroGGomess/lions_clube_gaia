@@ -26,6 +26,11 @@ Error: Could not find the table 'public.admins' in the schema cache
 
 ### 3️⃣ Verificar e Testar
 
+**Método 1 - Health Check (Rápido):**
+1. Aceda a `https://seu-site.vercel.app/api/health`
+2. Deve ver `"status": "healthy"` e todas as tabelas como `true`
+
+**Método 2 - Manual:**
 1. Vá para **Table Editor** no Supabase
 2. Verifique que a tabela `admins` existe
 3. Aceda a `https://seu-site.vercel.app/admin/login`

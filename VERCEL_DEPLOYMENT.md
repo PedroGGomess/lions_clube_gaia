@@ -107,6 +107,14 @@ RATE_LIMIT_MAX=10
 
 ### 3.2. Verificar Funcionamento
 
+**Método Rápido - Health Check:**
+
+1. Aceda a `https://seu-projeto.vercel.app/api/health`
+2. Deve ver uma resposta JSON com `"status": "healthy"`
+3. Se houver erros, a resposta indicará exatamente qual tabela está em falta
+
+**Verificação Manual:**
+
 1. **Teste o login**: Deve conseguir fazer login com as credenciais
 2. **Crie uma eleição**: Teste criar uma nova eleição
 3. **Gere códigos**: Teste gerar códigos de votação

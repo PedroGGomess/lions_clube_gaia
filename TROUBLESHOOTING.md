@@ -56,6 +56,34 @@ Este script apenas cria a tabela `admins` e as políticas de segurança necessá
 
 ## Verificar que Funcionou
 
+### Usar o Health Check Endpoint
+
+A forma mais rápida de verificar se tudo está correto:
+
+1. Aceda a `https://seu-site.vercel.app/api/health`
+2. Deve ver uma resposta JSON com `"status": "healthy"`
+3. Se houver problemas, verá `"status": "unhealthy"` com detalhes dos erros
+
+Exemplo de resposta saudável:
+```json
+{
+  "status": "healthy",
+  "timestamp": "2024-01-31T19:00:00.000Z",
+  "checks": {
+    "supabaseConfig": true,
+    "databaseConnection": true,
+    "requiredTables": {
+      "elections": true,
+      "choices": true,
+      "tokens": true,
+      "votes": true,
+      "admins": true
+    }
+  },
+  "errors": []
+}
+```
+
 ### No Supabase
 
 1. Vá para **Table Editor** no dashboard do Supabase
