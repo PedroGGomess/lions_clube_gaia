@@ -61,6 +61,13 @@ ALTER TABLE admins ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies: Allow all operations for now (authentication will be handled in app layer)
 -- In production, you would want more restrictive policies
+-- Note: Using DROP POLICY IF EXISTS to make this script idempotent (can be run multiple times)
+
+DROP POLICY IF EXISTS "Enable all for elections" ON elections;
+DROP POLICY IF EXISTS "Enable all for choices" ON choices;
+DROP POLICY IF EXISTS "Enable all for tokens" ON tokens;
+DROP POLICY IF EXISTS "Enable all for votes" ON votes;
+DROP POLICY IF EXISTS "Enable all for admins" ON admins;
 
 CREATE POLICY "Enable all for elections" ON elections FOR ALL USING (true);
 CREATE POLICY "Enable all for choices" ON choices FOR ALL USING (true);

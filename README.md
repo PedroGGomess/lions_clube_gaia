@@ -3,6 +3,8 @@
 App web de voto eletrónico para eventos presenciais, feita em Next.js e pronta para deploy na Vercel.
 
 > 🚀 **Início Rápido**: Para começar rapidamente, consulte [QUICK_START.md](./QUICK_START.md)
+> 
+> ⚠️ **Problemas com Login?**: Consulte o guia [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
 
 ## Características
 
