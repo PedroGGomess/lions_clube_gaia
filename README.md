@@ -46,7 +46,7 @@ npm install
 ```bash
 # .env (já configurado com as credenciais corretas)
 DATABASE_URL="file:./dev.db"
-ADMIN_USERNAME="LionsClubGaia"
+ADMIN_USERNAME="LionsClubeGaia"
 ADMIN_PASSWORD="Lionsclubegaia@"
 ```
 
@@ -88,7 +88,7 @@ datasource db {
 ### Para Administradores
 
 1. **Aceder ao painel**: Ir para `/admin/login` e fazer login
-   - Utilizador: `LionsClubGaia`
+   - Utilizador: `LionsClubeGaia`
    - Palavra-passe: `Lionsclubegaia@`
    - ⚠️ **Nota**: O utilizador admin é criado automaticamente na primeira tentativa de login com as credenciais definidas no ficheiro `.env`. Se precisar de alterar as credenciais, edite o `.env` antes de executar `npm run prisma:push`
 

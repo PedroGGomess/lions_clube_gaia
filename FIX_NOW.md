@@ -108,8 +108,8 @@ Deve ver:
 Adicione estas variáveis no Vercel:
 
 ```
-ADMIN_USERNAME=seu-username-aqui
-ADMIN_PASSWORD=sua-senha-segura-aqui
+ADMIN_USERNAME=LionsClubeGaia
+ADMIN_PASSWORD=Lionsclubegaia@
 ```
 
 Depois, faça **Redeploy**:

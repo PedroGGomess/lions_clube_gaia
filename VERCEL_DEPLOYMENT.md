@@ -73,9 +73,9 @@ NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-publica-aqui
 
 # Admin Credentials (OBRIGATÓRIO)
-# IMPORTANTE: Altere estas credenciais para algo seguro e único!
-ADMIN_USERNAME=seu-nome-utilizador
-ADMIN_PASSWORD=sua-senha-super-segura
+# Credenciais padrão - altere se desejar credenciais diferentes
+ADMIN_USERNAME=LionsClubeGaia
+ADMIN_PASSWORD=Lionsclubegaia@
 
 # Opcional
 RATE_LIMIT_MAX=10
@@ -84,10 +84,10 @@ RATE_LIMIT_MAX=10
 **Valores a substituir:**
 - `NEXT_PUBLIC_SUPABASE_URL`: O Project URL do Supabase (Parte 1.3)
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: A anon/public key do Supabase (Parte 1.3)
-- `ADMIN_USERNAME`: Nome de utilizador para login admin (escolha um seguro!)
-- `ADMIN_PASSWORD`: Palavra-passe para login admin (use uma senha forte!)
+- `ADMIN_USERNAME`: Nome de utilizador para login admin (padrão: LionsClubeGaia)
+- `ADMIN_PASSWORD`: Palavra-passe para login admin (padrão: Lionsclubegaia@)
 
-**⚠️ IMPORTANTE**: Para produção, use credenciais diferentes das que estão nos exemplos do repositório!
+**💡 Nota**: As credenciais padrão são adequadas para uso do Lions Clube de Gaia.
 
 ### 2.3. Deploy
 
@@ -101,7 +101,7 @@ RATE_LIMIT_MAX=10
 
 1. Aceda ao URL do seu projeto Vercel
 2. Vá para `/admin/login`
-3. Use as credenciais definidas em `ADMIN_USERNAME` e `ADMIN_PASSWORD`
+3. Use as credenciais configuradas (padrão: LionsClubeGaia / Lionsclubegaia@)
 
 **Nota**: O primeiro login cria automaticamente o utilizador admin na base de dados Supabase.
 

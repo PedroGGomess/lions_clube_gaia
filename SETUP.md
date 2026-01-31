@@ -41,7 +41,8 @@ Edite `.env.local` com as suas credenciais:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-anon-key
-ADMIN_PASSWORD=sua-senha-admin-segura
+ADMIN_USERNAME=LionsClubeGaia
+ADMIN_PASSWORD=Lionsclubegaia@
 ```
 
 ### 3. Instalar Dependências

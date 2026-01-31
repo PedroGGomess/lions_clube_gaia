@@ -111,8 +111,8 @@ Certifique-se de que tem TODAS estas variáveis configuradas no Vercel:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anonima-aqui
-ADMIN_USERNAME=seu-nome-de-utilizador
-ADMIN_PASSWORD=sua-senha-segura
+ADMIN_USERNAME=LionsClubeGaia
+ADMIN_PASSWORD=Lionsclubegaia@
 ```
 
 ### Como Obter as Credenciais do Supabase

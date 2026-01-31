@@ -43,8 +43,8 @@ Certifique-se que tem estas 4 variáveis configuradas:
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...
-ADMIN_USERNAME=seu-username
-ADMIN_PASSWORD=sua-senha-segura
+ADMIN_USERNAME=LionsClubeGaia
+ADMIN_PASSWORD=Lionsclubegaia@
 ```
 
 ### Como configurar:
