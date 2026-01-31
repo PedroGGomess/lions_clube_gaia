@@ -23,10 +23,13 @@ Sistema completo de votação eletrónica para eventos presenciais, otimizado pa
 
 ### 1. Configurar Supabase
 
+**📘 Para instruções detalhadas passo-a-passo com explicações completas, consulte [SUPABASE_SETUP.md](SUPABASE_SETUP.md)**
+
+Resumo rápido:
 1. Crie uma conta em [supabase.com](https://supabase.com)
 2. Crie um novo projeto
 3. Vá para SQL Editor e execute o script `database/schema.sql`
-4. Copie as credenciais do projeto (URL e Anon Key)
+4. Copie as credenciais do projeto (URL e Anon Key) em Settings → API
 
 ### 2. Configurar Variáveis de Ambiente
 

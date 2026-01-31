@@ -10,6 +10,9 @@
 
 ### 1. Prepare Supabase
 
+**📘 Para instruções detalhadas passo-a-passo, consulte [SUPABASE_SETUP.md](SUPABASE_SETUP.md)**
+
+Resumo:
 1. Go to [supabase.com](https://supabase.com) and create a new project
 2. Navigate to SQL Editor
 3. Copy and paste the entire contents of `database/schema.sql`

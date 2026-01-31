@@ -20,10 +20,12 @@ App web de voto eletrónico para eventos presenciais, feita em Next.js e pronta 
 - **Next.js 14**: Framework React com App Router
 - **TypeScript**: Type safety
 - **Tailwind CSS**: Estilização responsiva
-- **Prisma**: ORM para gestão de base de dados
-- **SQLite**: Base de dados (pode ser alterada para PostgreSQL para produção)
+- **Supabase**: Base de dados PostgreSQL e autenticação
+- **Row Level Security**: Segurança a nível de base de dados
 
 ## Instalação Local
+
+**📘 Para instruções detalhadas sobre configuração do Supabase, consulte [SUPABASE_SETUP.md](SUPABASE_SETUP.md)**
 
 1. Clone o repositório:
 ```bash
@@ -36,18 +38,22 @@ cd lions_clube_gaia
 npm install
 ```
 
-3. Configure as variáveis de ambiente (opcional, valores por defeito já definidos):
+3. Configure o Supabase:
+   - Siga o guia completo em [SUPABASE_SETUP.md](SUPABASE_SETUP.md)
+   - Crie um projeto no Supabase
+   - Execute o script `database/schema.sql` no SQL Editor
+   - Copie as credenciais (URL e Anon Key)
+
+4. Configure as variáveis de ambiente:
 ```bash
-# .env
-DATABASE_URL="file:./dev.db"
-ADMIN_USERNAME="admin"
-ADMIN_PASSWORD="admin123"
+cp .env.example .env.local
 ```
 
-4. Gere o cliente Prisma e crie a base de dados:
-```bash
-npx prisma generate
-npx prisma db push
+Edite `.env.local` com as suas credenciais do Supabase:
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-anon-key
+ADMIN_PASSWORD=sua-senha-segura
 ```
 
 5. Execute o servidor de desenvolvimento:
@@ -59,22 +65,18 @@ npm run dev
 
 ## Deploy na Vercel
 
-1. Faça push do código para o GitHub
+**📘 Para instruções detalhadas de deploy, consulte [DEPLOY.md](DEPLOY.md)**
 
-2. Importe o projeto na Vercel
+1. Configure o Supabase primeiro (ver [SUPABASE_SETUP.md](SUPABASE_SETUP.md))
 
-3. Configure as variáveis de ambiente na Vercel:
-   - `DATABASE_URL`: URL da base de dados PostgreSQL (recomendado: Vercel Postgres)
-   - `ADMIN_USERNAME`: Nome de utilizador do admin
+2. Faça push do código para o GitHub
+
+3. Importe o projeto na Vercel
+
+4. Configure as variáveis de ambiente na Vercel:
+   - `NEXT_PUBLIC_SUPABASE_URL`: URL do projeto Supabase
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Anon key do Supabase
    - `ADMIN_PASSWORD`: Palavra-passe do admin
-
-4. Atualize o `prisma/schema.prisma` para usar PostgreSQL:
-```prisma
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-```
 
 5. O deploy será automático!
 
@@ -124,11 +126,14 @@ datasource db {
 
 ## Estrutura da Base de Dados
 
-- **Election**: Eleições com título, datas, estado ativo
-- **Candidate**: Candidatos de cada eleição
-- **VotingCode**: Códigos de votação com hash
-- **Vote**: Votos registados (apenas com hash do token)
-- **Admin**: Utilizadores administradores
+Supabase (PostgreSQL) com 4 tabelas principais:
+
+- **elections**: Eleições com título, estado (draft/active/closed), data de criação
+- **choices**: Opções de voto para cada eleição (candidatos, propostas, etc.)
+- **tokens**: Códigos de votação com hash SHA-256 para segurança
+- **votes**: Votos anónimos (sem ligação a tokens ou identidade)
+
+**Ver schema completo**: `database/schema.sql`
 
 ## Modo Quiosque (Android)
 
