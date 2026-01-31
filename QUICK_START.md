@@ -91,14 +91,21 @@ npm run prisma:push
 
 ### O utilizador admin não existe?
 
-O utilizador admin é criado automaticamente na primeira tentativa de login usando as credenciais definidas em `.env`.
+O utilizador admin é criado automaticamente na **primeira tentativa de login** usando as credenciais definidas em `.env`. 
+
+Para verificar se foi criado com sucesso:
+```bash
+sqlite3 prisma/dev.db "SELECT username FROM Admin;"
+```
+
+Deve mostrar: `LionsClubGaia`
 
 ## 📝 Notas Importantes
 
 - A base de dados SQLite (`prisma/dev.db`) **não é enviada para o Git**
 - Para ambientes de produção, considere usar PostgreSQL ou MySQL
-- As credenciais admin estão definidas em `.env` (não partilhar este ficheiro)
-- O primeiro login cria automaticamente o utilizador admin
+- As credenciais admin podem ser alteradas no ficheiro `.env` antes de criar a base de dados
+- O primeiro login cria automaticamente o utilizador admin com as credenciais do `.env`
 
 ## 🚀 Próximos Passos
 
@@ -111,4 +118,4 @@ Após fazer login com sucesso:
 
 ---
 
-Para mais informações, consulte `README.md` ou `SETUP.md`
+📖 **Documentação Completa**: Consulte `README.md` para informações detalhadas sobre deploy, segurança e modo quiosque.

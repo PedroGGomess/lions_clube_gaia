@@ -86,7 +86,7 @@ datasource db {
 1. **Aceder ao painel**: Ir para `/admin/login` e fazer login
    - Utilizador: `LionsClubGaia`
    - Palavra-passe: `Lionsclubegaia@`
-   - ⚠️ **Nota**: O utilizador admin é criado automaticamente na primeira tentativa de login
+   - ⚠️ **Nota**: O utilizador admin é criado automaticamente na primeira tentativa de login com as credenciais definidas no ficheiro `.env`. Se precisar de alterar as credenciais, edite o `.env` antes de executar `npm run prisma:push`
 
 2. **Criar uma eleição**:
    - Clicar em "Nova Eleição"
