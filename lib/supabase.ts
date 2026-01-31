@@ -2,7 +2,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
 let supabaseInstance: SupabaseClient | null = null
 
-function getSupabaseClient(): SupabaseClient {
+function getOrCreateSupabaseClient(): SupabaseClient {
   if (!supabaseInstance) {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -19,7 +19,7 @@ function getSupabaseClient(): SupabaseClient {
 
 export const supabase = new Proxy({} as SupabaseClient, {
   get: (_target, prop) => {
-    const client = getSupabaseClient()
+    const client = getOrCreateSupabaseClient()
     const value = (client as any)[prop]
     return typeof value === 'function' ? value.bind(client) : value
   }
