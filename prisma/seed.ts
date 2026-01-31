@@ -9,12 +9,17 @@ async function main() {
 
   // Create admin user
   console.log('Creating admin user...')
+  const adminUsername = process.env.ADMIN_USERNAME || 'LionsClubeGaia'
+  const adminPassword = process.env.ADMIN_PASSWORD || 'Lionsclubegaia@'
+  
   const admin = await prisma.admin.upsert({
-    where: { username: 'admin' },
-    update: {},
+    where: { username: adminUsername },
+    update: {
+      password: await hashPassword(adminPassword),
+    },
     create: {
-      username: 'admin',
-      password: await hashPassword('admin123'),
+      username: adminUsername,
+      password: await hashPassword(adminPassword),
     },
   })
   console.log(`✅ Admin user created: ${admin.username}`)
@@ -80,8 +85,8 @@ async function main() {
 
   console.log('\n✅ Database seeded successfully!')
   console.log('\nLogin credentials:')
-  console.log('  Username: admin')
-  console.log('  Password: admin123')
+  console.log(`  Username: ${adminUsername}`)
+  console.log('  Password: (set via ADMIN_PASSWORD environment variable)')
 }
 
 main()
