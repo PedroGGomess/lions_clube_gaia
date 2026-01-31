@@ -2,7 +2,9 @@
 
 ## ⚡ Início Rápido
 
-Para começar a usar o sistema de votação, siga estes passos:
+Este guia é para **desenvolvimento local**. Para deployment no Vercel/produção, consulte [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md).
+
+Para começar a usar o sistema de votação localmente, siga estes passos:
 
 ### 1. Instalar Dependências
 
@@ -12,13 +14,15 @@ npm install
 
 ### 2. Configurar Variáveis de Ambiente
 
-O ficheiro `.env` já está configurado com as credenciais corretas:
+O ficheiro `.env` já está configurado para desenvolvimento local:
 
 ```env
 DATABASE_URL="file:./dev.db"
 ADMIN_USERNAME="LionsClubGaia"
 ADMIN_PASSWORD="Lionsclubegaia@"
 ```
+
+**Nota**: Para produção no Vercel, precisará também de configurar as variáveis Supabase. Consulte [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md).
 
 ### 3. Inicializar Base de Dados
 
@@ -103,11 +107,14 @@ Deve mostrar: `LionsClubGaia`
 ## 📝 Notas Importantes
 
 - A base de dados SQLite (`prisma/dev.db`) **não é enviada para o Git**
-- Para ambientes de produção, considere usar PostgreSQL ou MySQL
+- Esta configuração é apenas para **desenvolvimento local**
+- Para **produção no Vercel**, a aplicação usa **Supabase** (PostgreSQL)
 - As credenciais admin podem ser alteradas no ficheiro `.env` antes de criar a base de dados
 - O primeiro login cria automaticamente o utilizador admin com as credenciais do `.env`
 
 ## 🚀 Próximos Passos
+
+### Desenvolvimento Local
 
 Após fazer login com sucesso:
 
@@ -116,6 +123,18 @@ Após fazer login com sucesso:
 3. Partilhar os códigos com os votantes
 4. Acompanhar os resultados em tempo real
 
+### Deployment em Produção
+
+Para fazer deploy no Vercel:
+
+1. 📖 Consulte **[VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)** para o guia completo
+2. Configure o Supabase (base de dados PostgreSQL)
+3. Configure as variáveis de ambiente no Vercel
+4. Deploy automático a partir do GitHub
+
 ---
 
-📖 **Documentação Completa**: Consulte `README.md` para informações detalhadas sobre deploy, segurança e modo quiosque.
+📖 **Documentação**:
+- **Desenvolvimento Local**: Este ficheiro (QUICK_START.md)
+- **Deployment Vercel**: [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)
+- **Informações Gerais**: [README.md](./README.md)
