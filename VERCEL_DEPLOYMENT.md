@@ -63,8 +63,9 @@ NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-publica-aqui
 
 # Admin Credentials (OBRIGATÓRIO)
-ADMIN_USERNAME=LionsClubGaia
-ADMIN_PASSWORD=Lionsclubegaia@
+# IMPORTANTE: Altere estas credenciais para algo seguro e único!
+ADMIN_USERNAME=seu-nome-utilizador
+ADMIN_PASSWORD=sua-senha-super-segura
 
 # Opcional
 RATE_LIMIT_MAX=10
@@ -73,8 +74,10 @@ RATE_LIMIT_MAX=10
 **Valores a substituir:**
 - `NEXT_PUBLIC_SUPABASE_URL`: O Project URL do Supabase (Parte 1.3)
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: A anon/public key do Supabase (Parte 1.3)
-- `ADMIN_USERNAME`: Nome de utilizador para login admin
-- `ADMIN_PASSWORD`: Palavra-passe para login admin
+- `ADMIN_USERNAME`: Nome de utilizador para login admin (escolha um seguro!)
+- `ADMIN_PASSWORD`: Palavra-passe para login admin (use uma senha forte!)
+
+**⚠️ IMPORTANTE**: Para produção, use credenciais diferentes das que estão nos exemplos do repositório!
 
 ### 2.3. Deploy
 
