@@ -1,5 +1,5 @@
 -- Migration: Electronic Voting System
--- Description: Creates tables for elections, choices, tokens, and votes
+-- Description: Creates tables for elections, choices, tokens, votes, and admins
 
 -- Table: elections
 CREATE TABLE IF NOT EXISTS elections (
@@ -36,18 +36,28 @@ CREATE TABLE IF NOT EXISTS votes (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Table: admins (admin users for authentication)
+CREATE TABLE IF NOT EXISTS admins (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  username TEXT NOT NULL UNIQUE,
+  password TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_tokens_election ON tokens(election_id);
 CREATE INDEX IF NOT EXISTS idx_tokens_hash ON tokens(token_hash);
 CREATE INDEX IF NOT EXISTS idx_votes_election ON votes(election_id);
 CREATE INDEX IF NOT EXISTS idx_votes_choice ON votes(choice_id);
 CREATE INDEX IF NOT EXISTS idx_choices_election ON choices(election_id);
+CREATE INDEX IF NOT EXISTS idx_admins_username ON admins(username);
 
 -- Enable Row Level Security (RLS)
 ALTER TABLE elections ENABLE ROW LEVEL SECURITY;
 ALTER TABLE choices ENABLE ROW LEVEL SECURITY;
 ALTER TABLE tokens ENABLE ROW LEVEL SECURITY;
 ALTER TABLE votes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE admins ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies: Allow all operations for now (authentication will be handled in app layer)
 -- In production, you would want more restrictive policies
@@ -56,3 +66,4 @@ CREATE POLICY "Enable all for elections" ON elections FOR ALL USING (true);
 CREATE POLICY "Enable all for choices" ON choices FOR ALL USING (true);
 CREATE POLICY "Enable all for tokens" ON tokens FOR ALL USING (true);
 CREATE POLICY "Enable all for votes" ON votes FOR ALL USING (true);
+CREATE POLICY "Enable all for admins" ON admins FOR ALL USING (true);
