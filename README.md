@@ -4,7 +4,9 @@ App web de voto eletrónico para eventos presenciais, feita em Next.js e pronta 
 
 > 🚀 **Início Rápido**: Para começar rapidamente, consulte [QUICK_START.md](./QUICK_START.md)
 > 
-> ⚠️ **Problemas com Login?**: Consulte o guia [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
+> 🚨 **ERRO: "Table admins not found"?**: **[➡️ CLIQUE AQUI PARA SOLUÇÃO IMEDIATA](./FIX_NOW.md)** ⚡
+> 
+> ⚠️ **Outros Problemas com Login?**: Consulte o guia [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
 
 ## Características
 
