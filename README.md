@@ -2,6 +2,8 @@
 
 App web de voto eletrónico para eventos presenciais, feita em Next.js e pronta para deploy na Vercel.
 
+> 🚀 **Início Rápido**: Para começar rapidamente, consulte [QUICK_START.md](./QUICK_START.md)
+
 ## Características
 
 - ✅ **Votação anónima e segura**: Tokens com hash e registo separado dos votos
@@ -36,18 +38,17 @@ cd lions_clube_gaia
 npm install
 ```
 
-3. Configure as variáveis de ambiente (opcional, valores por defeito já definidos):
+3. Configure as variáveis de ambiente:
 ```bash
-# .env
+# .env (já configurado com as credenciais corretas)
 DATABASE_URL="file:./dev.db"
-ADMIN_USERNAME="admin"
-ADMIN_PASSWORD="admin123"
+ADMIN_USERNAME="LionsClubGaia"
+ADMIN_PASSWORD="Lionsclubegaia@"
 ```
 
 4. Gere o cliente Prisma e crie a base de dados:
 ```bash
-npx prisma generate
-npx prisma db push
+npm run prisma:push
 ```
 
 5. Execute o servidor de desenvolvimento:
@@ -82,9 +83,10 @@ datasource db {
 
 ### Para Administradores
 
-1. **Aceder ao painel**: Ir para `/admin` e fazer login
-   - Utilizador padrão: `admin`
-   - Palavra-passe padrão: `admin123`
+1. **Aceder ao painel**: Ir para `/admin/login` e fazer login
+   - Utilizador: `LionsClubGaia`
+   - Palavra-passe: `Lionsclubegaia@`
+   - ⚠️ **Nota**: O utilizador admin é criado automaticamente na primeira tentativa de login
 
 2. **Criar uma eleição**:
    - Clicar em "Nova Eleição"
