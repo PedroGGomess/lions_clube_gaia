@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Large touch-friendly buttons */
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-6 px-8 rounded-lg text-2xl transition-colors shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 hover:bg-gray-700 text-white font-bold py-6 px-8 rounded-lg text-2xl transition-colors shadow-lg;
+}
+
+.btn-success {
+  @apply bg-green-600 hover:bg-green-700 text-white font-bold py-6 px-8 rounded-lg text-2xl transition-colors shadow-lg;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-8 rounded-lg text-2xl transition-colors shadow-lg;
+}
+
+/* Input fields */
+.input-large {
+  @apply border-2 border-gray-300 rounded-lg px-6 py-4 text-2xl w-full focus:outline-none focus:border-blue-500;
+}
+
