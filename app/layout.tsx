@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import './globals.css'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Sistema de Votação Eletrónica",
-  description: "Sistema de votação para eventos presenciais",
-};
+  title: 'Sistema de Votação Eletrónica - Lions Clube Gaia',
+  description: 'Sistema de votação eletrónica para eventos presenciais',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="pt">
       <body>{children}</body>
     </html>
-  );
+  )
 }
