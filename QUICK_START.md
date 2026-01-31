@@ -18,7 +18,7 @@ O ficheiro `.env` já está configurado para desenvolvimento local:
 
 ```env
 DATABASE_URL="file:./dev.db"
-ADMIN_USERNAME="LionsClubGaia"
+ADMIN_USERNAME="LionsClubeGaia"
 ADMIN_PASSWORD="Lionsclubegaia@"
 ```
 
@@ -47,7 +47,7 @@ O servidor estará disponível em: `http://localhost:3000`
 
 1. Aceda a `http://localhost:3000/admin/login`
 2. Use as credenciais:
-   - **Utilizador**: `LionsClubGaia`
+   - **Utilizador**: `LionsClubeGaia`
    - **Palavra-passe**: `Lionsclubegaia@`
 
 ## 🔧 Comandos Úteis
@@ -102,7 +102,7 @@ Para verificar se foi criado com sucesso:
 sqlite3 prisma/dev.db "SELECT username FROM Admin;"
 ```
 
-Deve mostrar: `LionsClubGaia`
+Deve mostrar: `LionsClubeGaia`
 
 ## 📝 Notas Importantes
 

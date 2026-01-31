@@ -64,8 +64,8 @@ datasource db {
 2. Import your GitHub repository
 3. Configure environment variables:
    - `DATABASE_URL`: Your PostgreSQL connection string
-   - `ADMIN_USERNAME`: Admin username (e.g., `admin`)
-   - `ADMIN_PASSWORD`: Admin password (e.g., `admin123`)
+   - `ADMIN_USERNAME`: Admin username (default: `LionsClubeGaia`)
+   - `ADMIN_PASSWORD`: Admin password (default: `Lionsclubegaia@`)
 4. Click "Deploy"
 
 **Option B: Via Vercel CLI**
@@ -98,11 +98,11 @@ npx tsx prisma/seed.ts
 Create `.env.local` file:
 ```bash
 DATABASE_URL="postgresql://user:password@host:5432/dbname"
-ADMIN_USERNAME="admin"
-ADMIN_PASSWORD="your-secure-password"
+ADMIN_USERNAME="LionsClubeGaia"
+ADMIN_PASSWORD="Lionsclubegaia@"
 ```
 
-**Security Note**: Change the default admin password in production!
+**Default Credentials**: The admin credentials are set to LionsClubeGaia / Lionsclubegaia@
 
 ---
 

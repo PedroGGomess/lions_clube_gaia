@@ -20,17 +20,27 @@ Este guia explica como fazer o deployment da aplicação de votação no Vercel.
 
 ### 1.2. Executar Schema SQL
 
+**⚠️ IMPORTANTE**: Este passo é OBRIGATÓRIO e cria todas as tabelas necessárias na base de dados.
+
 1. No dashboard do Supabase, vá para **SQL Editor**
 2. Clique em **New Query**
-3. Cole o conteúdo completo do ficheiro `database/schema.sql`
-4. Clique em **Run** para executar
+3. **Cole o conteúdo COMPLETO** do ficheiro `database/schema.sql`
+   - Certifique-se de copiar TODO o ficheiro (do início ao fim)
+   - Não execute apenas parte do script
+4. Clique em **Run** para executar (ou pressione Ctrl/Cmd + Enter)
+5. **Aguarde** a mensagem de sucesso
+6. **Verifique** que todas as tabelas foram criadas:
+   - Vá para **Table Editor** 
+   - Deve ver 5 tabelas: `elections`, `choices`, `tokens`, `votes`, `admins`
 
 Isto criará todas as tabelas necessárias:
 - `elections` - Eleições
 - `choices` - Opções de voto
 - `tokens` - Códigos de votação
 - `votes` - Votos anónimos
-- `admins` - Utilizadores administradores
+- `admins` - Utilizadores administradores (necessário para login!)
+
+**Se faltar a tabela `admins`**, o login não funcionará. Ver secção de [Resolução de Problemas](#resolução-de-problemas) abaixo.
 
 ### 1.3. Obter Credenciais do Supabase
 
@@ -63,9 +73,9 @@ NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-publica-aqui
 
 # Admin Credentials (OBRIGATÓRIO)
-# IMPORTANTE: Altere estas credenciais para algo seguro e único!
-ADMIN_USERNAME=seu-nome-utilizador
-ADMIN_PASSWORD=sua-senha-super-segura
+# Credenciais padrão - altere se desejar credenciais diferentes
+ADMIN_USERNAME=LionsClubeGaia
+ADMIN_PASSWORD=Lionsclubegaia@
 
 # Opcional
 RATE_LIMIT_MAX=10
@@ -74,10 +84,10 @@ RATE_LIMIT_MAX=10
 **Valores a substituir:**
 - `NEXT_PUBLIC_SUPABASE_URL`: O Project URL do Supabase (Parte 1.3)
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: A anon/public key do Supabase (Parte 1.3)
-- `ADMIN_USERNAME`: Nome de utilizador para login admin (escolha um seguro!)
-- `ADMIN_PASSWORD`: Palavra-passe para login admin (use uma senha forte!)
+- `ADMIN_USERNAME`: Nome de utilizador para login admin (padrão: LionsClubeGaia)
+- `ADMIN_PASSWORD`: Palavra-passe para login admin (padrão: Lionsclubegaia@)
 
-**⚠️ IMPORTANTE**: Para produção, use credenciais diferentes das que estão nos exemplos do repositório!
+**💡 Nota**: As credenciais padrão são adequadas para uso do Lions Clube de Gaia.
 
 ### 2.3. Deploy
 
@@ -91,11 +101,19 @@ RATE_LIMIT_MAX=10
 
 1. Aceda ao URL do seu projeto Vercel
 2. Vá para `/admin/login`
-3. Use as credenciais definidas em `ADMIN_USERNAME` e `ADMIN_PASSWORD`
+3. Use as credenciais configuradas (padrão: LionsClubeGaia / Lionsclubegaia@)
 
 **Nota**: O primeiro login cria automaticamente o utilizador admin na base de dados Supabase.
 
 ### 3.2. Verificar Funcionamento
+
+**Método Rápido - Health Check:**
+
+1. Aceda a `https://seu-projeto.vercel.app/api/health`
+2. Deve ver uma resposta JSON com `"status": "healthy"`
+3. Se houver erros, a resposta indicará exatamente qual tabela está em falta
+
+**Verificação Manual:**
 
 1. **Teste o login**: Deve conseguir fazer login com as credenciais
 2. **Crie uma eleição**: Teste criar uma nova eleição
@@ -106,30 +124,44 @@ RATE_LIMIT_MAX=10
 
 ### Login não funciona
 
-**Problema**: "Erro ao fazer login" ou "Credenciais inválidas"
+**Problema**: "Erro ao fazer login", "Credenciais inválidas", ou erro "Could not find table 'public.admins'"
 
-**Soluções**:
+Este é o problema mais comum! Consulte o guia detalhado: **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)**
+
+**Soluções rápidas**:
 
 1. **Verificar variáveis de ambiente no Vercel**:
    - Vá para o seu projeto no Vercel
    - Settings > Environment Variables
-   - Confirme que `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` estão corretos
+   - Confirme que TODAS as 4 variáveis estão configuradas:
+     - `NEXT_PUBLIC_SUPABASE_URL`
+     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+     - `ADMIN_USERNAME`
+     - `ADMIN_PASSWORD`
 
-2. **Verificar schema no Supabase**:
+2. **Verificar tabela admins no Supabase**:
    - Vá para o Supabase > Table Editor
    - Verifique se a tabela `admins` existe
-   - Se não existir, execute novamente o `database/schema.sql`
+   - **Se não existir**, execute o ficheiro `database/schema.sql` completo
+   - **OU** execute apenas `database/fix-admins-table.sql` para criar a tabela em falta
 
-3. **Verificar logs no Vercel**:
+3. **Verificar schema no Supabase**:
+   - Vá para o Supabase > Table Editor
+   - Deve ver 5 tabelas: `elections`, `choices`, `tokens`, `votes`, `admins`
+   - Se faltar alguma tabela, execute novamente o `database/schema.sql`
+
+4. **Verificar logs no Vercel**:
    - No projeto Vercel, vá para **Deployments**
    - Clique no deployment mais recente
    - Vá para **Functions** > Clique numa função
-   - Verifique os logs para erros
+   - Verifique os logs para erros específicos
 
-4. **Redeployar**:
+5. **Redeployar**:
    - No Vercel, vá para **Deployments**
    - Clique nos 3 pontos (...) no deployment mais recente
    - Clique em **Redeploy**
+
+**Para diagnóstico completo e soluções passo-a-passo**, consulte **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)**
 
 ### Supabase retorna erro 401
 
