@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Election {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  startDate   DateTime
+  endDate     DateTime
+  isActive    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  candidates  Candidate[]
+  votingCodes VotingCode[]
+  votes       Vote[]
+}
+
+model Candidate {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  imageUrl    String?
+  order       Int      @default(0)
+  electionId  String
+  election    Election @relation(fields: [electionId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  
+  votes       Vote[]
+  
+  @@index([electionId])
+}
+
+model VotingCode {
+  id         String   @id @default(cuid())
+  code       String   @unique
+  tokenHash  String   @unique
+  used       Boolean  @default(false)
+  usedAt     DateTime?
+  electionId String
+  election   Election @relation(fields: [electionId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  
+  @@index([electionId])
+  @@index([code])
+  @@index([tokenHash])
+}
+
+model Vote {
+  id          String    @id @default(cuid())
+  tokenHash   String    @unique
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  electionId  String
+  election    Election  @relation(fields: [electionId], references: [id], onDelete: Cascade)
+  votedAt     DateTime  @default(now())
+  
+  @@index([electionId])
+  @@index([candidateId])
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
