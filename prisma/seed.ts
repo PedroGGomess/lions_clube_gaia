@@ -86,7 +86,7 @@ async function main() {
   console.log('\n✅ Database seeded successfully!')
   console.log('\nLogin credentials:')
   console.log(`  Username: ${adminUsername}`)
-  console.log(`  Password: ${adminPassword}`)
+  console.log('  Password: (set via ADMIN_PASSWORD environment variable)')
 }
 
 main()

@@ -5,6 +5,16 @@ import crypto from 'crypto'
 // Check if Supabase is configured
 const useSupabase = !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
 
+// Import the appropriate database client
+let dbClient: any = null
+if (useSupabase) {
+  const { supabase } = require('@/lib/supabase')
+  dbClient = supabase
+} else {
+  const { prisma } = require('@/lib/prisma')
+  dbClient = prisma
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { username, password } = await request.json()
@@ -20,9 +30,7 @@ export async function POST(request: NextRequest) {
 
     if (useSupabase) {
       // Use Supabase for production
-      const { supabase } = await import('@/lib/supabase')
-      
-      const { data: admins, error: fetchError } = await supabase
+      const { data: admins, error: fetchError } = await dbClient
         .from('admins')
         .select('*')
         .eq('username', username)
@@ -40,7 +48,7 @@ export async function POST(request: NextRequest) {
 
       // If no admin exists, create the default admin (first time setup)
       if (!admin) {
-        const { count: adminCount } = await supabase
+        const { count: adminCount } = await dbClient
           .from('admins')
           .select('*', { count: 'exact', head: true })
         
@@ -49,7 +57,7 @@ export async function POST(request: NextRequest) {
           const hashedPassword = await hashPassword(process.env.ADMIN_PASSWORD || 'Lionsclubegaia@')
           const adminUsername = process.env.ADMIN_USERNAME || 'LionsClubeGaia'
           
-          const { data: newAdmin, error: createError } = await supabase
+          const { data: newAdmin, error: createError } = await dbClient
             .from('admins')
             .insert({
               username: adminUsername,
@@ -84,22 +92,20 @@ export async function POST(request: NextRequest) {
       }
     } else {
       // Use Prisma for local development
-      const { prisma } = await import('@/lib/prisma')
-      
-      admin = await prisma.admin.findUnique({
+      admin = await dbClient.admin.findUnique({
         where: { username },
       })
 
       // If no admin exists, create the default admin (first time setup)
       if (!admin) {
-        const adminCount = await prisma.admin.count()
+        const adminCount = await dbClient.admin.count()
         
         if (adminCount === 0) {
           // Create default admin
           const hashedPassword = await hashPassword(process.env.ADMIN_PASSWORD || 'Lionsclubegaia@')
           const adminUsername = process.env.ADMIN_USERNAME || 'LionsClubeGaia'
           
-          admin = await prisma.admin.create({
+          admin = await dbClient.admin.create({
             data: {
               username: adminUsername,
               password: hashedPassword,
