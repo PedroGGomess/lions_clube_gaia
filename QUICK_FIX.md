@@ -73,6 +73,8 @@ WHERE table_schema = 'public';
 -- Deve retornar: elections, choices, tokens, votes, admins
 ```
 
+**Para verificação completa**: Execute o script `database/verify-setup.sql` que faz 7 verificações automáticas.
+
 ## Contacto
 
 Em caso de dúvidas, abra um issue no GitHub com:

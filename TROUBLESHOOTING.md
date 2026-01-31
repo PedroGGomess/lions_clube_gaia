@@ -154,6 +154,10 @@ Se continuar a ter problemas, verifique os logs:
 
 ## Comandos SQL Úteis
 
+### Script de Verificação Completo
+
+Para verificar se tudo está configurado corretamente, execute o script `database/verify-setup.sql` no Supabase SQL Editor. Este script faz 7 verificações e mostra o estado da sua base de dados.
+
 ### Verificar se a tabela admins existe
 
 ```sql
